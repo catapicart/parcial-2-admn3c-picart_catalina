@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
@@ -9,8 +9,8 @@
           height="200"
         />
       </v-col>
-
-      <v-col class="mb-4">
+    </v-row>
+     <!-- <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
           Welcome to Vuetify
         </h1>
@@ -43,7 +43,7 @@
           >
             {{ next.text }}
           </a>
-        </v-row>
+      
       </v-col>
 
       <v-col
@@ -87,8 +87,8 @@
           </a>
         </v-row>
       </v-col>
-    </v-row>
-  </v-container>
+    </v-row>-->
+  </v-container> 
 </template>
 
 <script>
