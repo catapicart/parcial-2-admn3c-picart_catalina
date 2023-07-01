@@ -1,15 +1,45 @@
 <template>
    <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
-    </v-row>
+    <v-row justify="center">
+    <v-col
+      cols="12"
+      sm="10"
+      md="8"
+      lg="6"
+    >
+      <v-card ref="form">
+        <v-card-text>
+          <v-text-field
+            ref="name"
+            v-model="name"
+            :rules="[() => !!name || 'Por favor, ingresa tu nombre']"
+            :error-messages="errorMessages"
+            label="Nombre"
+            placeholder="Juan"
+            required
+          ></v-text-field>
+        </v-card-text>
+        <v-divider class="mt-12"></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="guardar"
+          >
+           Guardar
+          </v-btn> 
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
+
+  <v-container 
+  class="boton"
+    >
+    <router-link to="/about" class="start">Comenzar el juego</router-link>
+  </v-container>
+
      <!-- <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
           Welcome to Vuetify
@@ -91,61 +121,57 @@
   </v-container> 
 </template>
 
+<style lang="scss">
+  .boton{
+    margin: 18px auto;
+    background-color: rgb(87, 52, 6);
+    
+  }
+  .start{
+    color: white;
+    text-decoration: none;
+  }
+  h1{
+    padding: 40px;
+  }
+</style>
+
 <script>
   export default {
     name: 'HelloWorld',
-
     data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
+      name: null,
+      guardado: false,
+      errorMessages: '',
+      formHasErrors: false,
     }),
+
+    computed: {
+      form () {
+        return {
+          name: this.name,
+        }
+      },
+    },
+
+    watch: {
+      name () {
+        this.errorMessages = ''
+      },
+    },
+
+    methods: {
+      guardar () {
+        this.formHasErrors = false
+
+    Object.keys(this.form).forEach(f => {
+      if (!this.form[f]) this.formHasErrors = true
+    this.$refs[f].validate(true)
+      })
+        localStorage.setItem("usuario", this.name);
+        this.guardado = true;
+        return true
+      },
+    },
   }
 </script>
