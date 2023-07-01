@@ -1,5 +1,30 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="home">
+    <h1>Jugando</h1>
+    <MainCard msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
+
+<style lang="scss">
+  .home{
+    background-color: rgb(43,40,187); 
+    background: linear-gradient(180deg, rgba(43,40,187,1) 0%, rgba(117,19,210,1) 100%);
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  h1{
+    padding: 40px;
+  }
+</style>
+
+<script>
+// @ is an alias to /src
+import MainCard from '@/components/MainCard.vue'
+
+export default {
+  name: 'MainCard',
+  components: {
+    MainCard
+  }
+}
+</script>

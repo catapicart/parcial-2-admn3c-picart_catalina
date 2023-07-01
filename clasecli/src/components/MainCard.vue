@@ -1,44 +1,50 @@
 <template>
    <v-container>
-    <v-row justify="center">
-    <v-col
-      cols="12"
-      sm="10"
-      md="8"
-      lg="6"
-    >
-      <v-card ref="form">
-        <v-card-text>
-          <v-text-field
-            ref="name"
-            v-model="name"
-            :rules="[() => !!name || 'Por favor, ingresa tu nombre']"
-            :error-messages="errorMessages"
-            label="Nombre"
-            placeholder="Juan"
-            required
-          ></v-text-field>
-        </v-card-text>
-        <v-divider class="mt-12"></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            text
-            @click="guardar"
-          >
-           Guardar
-          </v-btn> 
-        </v-card-actions>
-      </v-card>
-    </v-col>
-  </v-row>
+    <v-card
+    class="mx-auto"
+    max-width="344"
+  >
+    <v-img
+      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+      height="200px"
+    ></v-img>
 
-  <v-container 
-  class="boton"
-  v-if="guardado"
-    >
-    <router-link to="/about" class="start">Comenzar el juego</router-link>
+    <v-card-title>
+      Top western road trips
+    </v-card-title>
+
+    <v-card-subtitle>
+      1,000 miles of wonder
+    </v-card-subtitle>
+
+    <v-card-actions>
+      <v-btn
+        color="orange lighten-2"
+        text
+      >
+        Explore
+      </v-btn>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        icon
+        @click="show = !show"
+      >
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+  </v-card>
   </v-container>
 
      <!-- <v-col class="mb-4">
@@ -119,7 +125,6 @@
         </v-row>
       </v-col>
     </v-row>-->
-  </v-container> 
 </template>
 
 <style lang="scss">
@@ -147,40 +152,8 @@
 
 <script>
   export default {
-    name: 'HelloWorld',
     data: () => ({
-      name: null,
-      guardado: false,
-      errorMessages: '',
-      formHasErrors: false,
+      show: false,
     }),
-
-    computed: {
-      form () {
-        return {
-          name: this.name,
-        }
-      },
-    },
-
-    watch: {
-      name () {
-        this.errorMessages = ''
-      },
-    },
-
-    methods: {
-      guardar () {
-        this.formHasErrors = false
-
-    Object.keys(this.form).forEach(f => {
-      if (!this.form[f]) this.formHasErrors = true
-    this.$refs[f].validate(true)
-      })
-        localStorage.setItem("usuario", this.name);
-        this.guardado = true;
-        return true
-      },
-    },
   }
 </script>
