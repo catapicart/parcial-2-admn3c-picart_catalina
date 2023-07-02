@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Jugando</h1>
     <p>holaa</p>
-    <MainCard msg="Welcome to Your Vue.js App"/>
+    <MainCard/>
   </div>
 </template>
 
@@ -23,7 +23,7 @@
 import MainCard from '@/components/MainCard.vue'
 
 export default {
-  name: 'MainCard',
+  name: 'card',
   components: {
     MainCard
   }

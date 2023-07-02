@@ -1,4 +1,5 @@
 <template>
+  <v-app>
    <v-container>
     <v-card
     class="mx-auto"
@@ -125,6 +126,7 @@
         </v-row>
       </v-col>
     </v-row>-->
+  </v-app>
 </template>
 
 <style lang="scss">
