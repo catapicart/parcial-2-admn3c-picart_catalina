@@ -23,7 +23,7 @@
 import MainCard from '@/components/MainCard.vue'
 
 export default {
-  name: 'card',
+  name: 'main-card',
   components: {
     MainCard
   }
