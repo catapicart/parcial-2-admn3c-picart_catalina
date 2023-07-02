@@ -152,6 +152,7 @@
 
 <script>
   export default {
+    name: 'MainCard',
     data: () => ({
       show: false,
     }),
