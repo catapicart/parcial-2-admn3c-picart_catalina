@@ -18,17 +18,16 @@
       height="30px"
   :length="card.length" :value="card.value"
   ></v-otp-input>
-  <v-chip
+  
+    </v-card-title>
+<v-chip
       class="ma-2"
       color="red"
       @click="pista"
     >
       Pista
     </v-chip>
-    </v-card-title>
-
     <v-card-text
-    
     v-if="pistashow">
      Pista: {{ card.pista }}
     </v-card-text>

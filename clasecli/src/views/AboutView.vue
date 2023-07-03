@@ -1,18 +1,17 @@
 <template>
-  <div class="home">
+  <div>
     <h1>Jugando</h1>
-    <p>holaa</p>
-    <MainCard img=""/>
+    <MainCard/>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .home{
-    background-color: rgb(43,40,187); 
-    background: linear-gradient(180deg, rgba(43,40,187,1) 0%, rgba(117,19,210,1) 100%);
+    background-color: grey !important;
     height: 100vh;
   }
   h1{
+    color: black;
     padding: 40px;
   }
 </style>

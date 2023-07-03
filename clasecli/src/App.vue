@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <nav>
-      <p>4 fotos</p>
-      <p>1 palabra</p>
+      <img src="./assets/4f1p_logo.png" alt="Logo de 4 fotos 1 palabra" id="logo">
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
     </nav>
@@ -19,9 +18,13 @@
   color: #2c3e50;
 }
 
+#logo{
+  width: 10%;
+  margin: 15px;
+}
 nav {
-  padding: 30px;
-  background-color: blueviolet;
+  height: 90px;
+  background-color: rgb(39, 4, 71);
   a {
     font-weight: bold;
     color: #2c3e50;
