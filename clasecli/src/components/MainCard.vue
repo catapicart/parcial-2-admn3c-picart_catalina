@@ -1,131 +1,40 @@
 <template>
   <v-app>
-   <v-container>
+   <v-container v-for="card in cards" :key="card.id" :img="card.imagen" :val="card.value" :len="card.length" :pista="card.pista">
     <v-card
     class="mx-auto"
     max-width="344"
   >
     <v-img
-      src="../assets/imagen1.png"
-      height="200px"
+    :src="getImgUrl(card.imagen)" 
+      height="350px"
+      width="350px"
     ></v-img>
 
-    <v-card-title>
-      Top western road trips
+    <v-card-title
+    >
+      <v-otp-input
+      width="100px"
+      height="30px"
+  :length="card.length" :value="card.value"
+  ></v-otp-input>
+  <v-chip
+      class="ma-2"
+      color="red"
+      @click="pista"
+    >
+      Pista
+    </v-chip>
     </v-card-title>
 
-    <v-card-subtitle>
-      1,000 miles of wonder
-    </v-card-subtitle>
+    <v-card-text
+    
+    v-if="pistashow">
+     Pista: {{ card.pista }}
+    </v-card-text>
 
-    <v-card-actions>
-      <v-btn
-        color="orange lighten-2"
-        text
-      >
-        Explore
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-        </v-card-text>
-      </div>
-    </v-expand-transition>
   </v-card>
-  </v-container>
-
-     <!-- <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-      
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>-->
+  </v-container> 
   </v-app>
 </template>
 
@@ -153,10 +62,51 @@
 </style>
 
 <script>
+
   export default {
     name: 'MainCard',
+    props: ['id', 'img'],
     data: () => ({
       show: false,
+      pistashow: '',
+      cards: [
+        {
+          id: 1,
+          imagen: 'imagen1.png',
+          length: 7,
+          value: 'F',
+          pista: 'País de Europa'
+        },
+        {
+          id: 2,
+          imagen: 'imagen2.jpg',
+          length: 6,
+          value: 'F',
+          pista: 'Fácil de romper'
+        },
+        {
+          id: 3,
+          imagen: 'imagen3.png',
+          length: 5,
+          value: 'A',
+          pista: 'Material que se encuentra en las playas fácilmente'
+        },
+        {
+          id: 4,
+          imagen: 'imagen4.jpg',
+          length: 5,
+          value: 'C',
+          pista: 'Ir hacia abajo'
+        },
+      ]
     }),
+  methods: {
+    getImgUrl: function (imagePath) {
+      return require('@/assets/' + imagePath);
+    },
+    pista(){
+      this.pistashow = true;
+    }
+  }
   }
 </script>
