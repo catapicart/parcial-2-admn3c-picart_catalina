@@ -137,7 +137,7 @@
     data: () => ({
       show: false,
       field: '',
-      pistas: 3,
+      pistas: 4,
       cards: [
         {
           id: '1',
@@ -196,10 +196,8 @@
       this.pistashow = true;
       if(this.pistas == 0){
         document.getElementById('pista-alert').innerText = 'SIN PISTAS';
-        document.getElementById('b1').setAttribute("disabled", "");
-        document.getElementById('b2').setAttribute("disabled", "");
-        document.getElementById('b3').setAttribute("disabled", "");
-        document.getElementById('b4').setAttribute("disabled", "");
+        document.getElementById(pistaid).innerHTML= `Sin pistas`;
+        document.getElementById(pistaid).classList.remove("d-none");
 
       }
     },
