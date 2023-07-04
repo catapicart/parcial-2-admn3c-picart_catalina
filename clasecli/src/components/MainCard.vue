@@ -1,6 +1,17 @@
 <template>
   <v-app>
-   <v-container v-for="card in cards" :key="card.id" :img="card.imagen" :val="card.value" :len="card.maxlength" :pista="card.pista" :respuesta="card.respuesta">
+    <v-btn
+    elevation="2"
+    fab
+    text
+    tile
+    width="fit-content"
+    disabled
+    id="pista-alert"
+    color="white"
+  >{{ this.pistas }} pistas</v-btn>
+
+   <v-container v-for="card in cards" :key="card.id" :img="card.imagen" :val="card.value" :len="card.maxlength" :pista="card.pista" :respuesta="card.respuesta" class="componente" :pistaid="card.pistaid" :pistash="card.pistashow">
     <v-card
     class="mx-auto"
     max-width="344"
@@ -26,21 +37,22 @@
     </div>
 
     </v-card-title>
-<v-chip
-      class="ma-2"
+<v-btn
+      class="ma-2 pista-btn"
       color="red"
-      @click="pista"
+      @click="pista(card.pistaid)"
     >
       Pista
-    </v-chip>
+    </v-btn>
     <v-card-text
-    v-if="pistashow">
+    class="d-none"
+    :id="card.pistaid">
      Pista: {{ card.pista }}
     </v-card-text>
 
     <v-btn block
     @click="comprobar(card.id, card.respuesta, card.maxlength)">
-    Block Button
+    CHEQUEAR PALABRA
   </v-btn>
   </v-card>
   </v-container> 
@@ -85,7 +97,21 @@
     text-align: center;
     padding: 10px;
     background-color: rgb(216, 110, 110);
+    color: black;
   }
+  .componente{
+    z-index: 1;
+  }
+  #pista-alert{
+    position: fixed;
+    margin: 98% 80%;
+    z-index: 2;
+    background-color: #b3165a;
+    color: white !important;
+    text-align: center;
+    padding: 3px;
+  }
+
 </style>
 
 <script>
@@ -97,40 +123,48 @@
     props: ['id', 'img'],
     data: () => ({
       show: false,
-      pistashow: '',
       field: '',
+      pistas: 3,
       cards: [
         {
           id: '1',
+          pistaid : 'p1',
           imagen: 'imagen1.png',
           maxlength: 7,
           value: 'F',
           pista: 'País de Europa',
-          respuesta: 'FRANCIA'
+          respuesta: 'FRANCIA',
+          pistashow: false
         },
         {
           id: '2',
+          pistaid : 'p2',
           imagen: 'imagen2.jpg',
           maxlength: 6,
           value: 'F',
           pista: 'Fácil de romper',
-          respuesta: 'FRAGIL'
+          respuesta: 'FRAGIL',
+          pistashow: false
         },
         {
           id: '3',
+          pistaid : 'p3',
           imagen: 'imagen3.png',
           maxlength: 5,
           value: 'A',
           pista: 'Material que se encuentra en las playas fácilmente',
-          respuesta: 'ARENA'
+          respuesta: 'ARENA',
+          pistashow: false
         },
         {
           id: '4',
+          pistaid : 'p4',
           imagen: 'imagen4.jpg',
           maxlength: 5,
           value: 'C',
           pista: 'Ir hacia abajo',
-          respuesta: 'CAIDA'
+          respuesta: 'CAIDA',
+          pistashow: false
         },
       ]
     }),
@@ -138,8 +172,19 @@
     getImgUrl: function (imagePath) {
       return require('@/assets/' + imagePath);
     },
-    pista(){
+    pista(pistaid){
+      this.pistas--;
+      document.getElementById(pistaid).classList.remove("d-none")
+      console.log(this.pistas);
       this.pistashow = true;
+      if(this.pistas == 0){
+        document.getElementById('pista-alert').innerText = 'SIN PISTAS';
+        document.getElementById('p1').setAttribute("disabled", "");
+        document.getElementById('p2').setAttribute("disabled", "");
+        document.getElementById('p3').setAttribute("disabled", "");
+        document.getElementById('p4').setAttribute("disabled", "");
+
+      }
     },
     comprobar(cardId, cardR, len){
       this.field = document.getElementById(cardId);
@@ -152,6 +197,10 @@
         console.log('bien', cardR);
         this.field.setAttribute("disabled", "");
         this.field.style.backgroundColor="lightgreen";
+      }else{
+        this.padre = this.field.parentElement;
+        this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta">Palabra incorrecta. Vuelve a intentarlo</p></div>`;
+        // this.field.value = '';
       }
     }
   }
