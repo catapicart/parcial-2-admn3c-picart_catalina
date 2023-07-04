@@ -11,7 +11,7 @@
     color="white"
   >{{ this.pistas }} pistas</v-btn>
 
-   <v-container v-for="card in cards" :key="card.id" :img="card.imagen" :val="card.value" :len="card.maxlength" :pista="card.pista" :respuesta="card.respuesta" class="componente" :pistaid="card.pistaid" :pistash="card.pistashow">
+   <v-container v-for="card in cards" :key="card.id" :img="card.imagen" :val="card.value" :len="card.maxlength" :pista="card.pista" :respuesta="card.respuesta" class="componente" :pistaid="card.pistaid" :pistash="card.pistashow" :bid="card.btnid">
     <v-card
     class="mx-auto"
     max-width="344"
@@ -40,6 +40,7 @@
 <v-btn
       class="ma-2 pista-btn"
       color="red"
+      :id="card.btnid"
       @click="pista(card.pistaid)"
     >
       Pista
@@ -129,6 +130,7 @@
         {
           id: '1',
           pistaid : 'p1',
+          btnid : 'b1',
           imagen: 'imagen1.png',
           maxlength: 7,
           value: 'F',
@@ -139,6 +141,7 @@
         {
           id: '2',
           pistaid : 'p2',
+          btnid : 'b2',
           imagen: 'imagen2.jpg',
           maxlength: 6,
           value: 'F',
@@ -149,6 +152,7 @@
         {
           id: '3',
           pistaid : 'p3',
+          btnid : 'b3',
           imagen: 'imagen3.png',
           maxlength: 5,
           value: 'A',
@@ -159,6 +163,7 @@
         {
           id: '4',
           pistaid : 'p4',
+          btnid : 'b4',
           imagen: 'imagen4.jpg',
           maxlength: 5,
           value: 'C',
@@ -179,10 +184,10 @@
       this.pistashow = true;
       if(this.pistas == 0){
         document.getElementById('pista-alert').innerText = 'SIN PISTAS';
-        document.getElementById('p1').setAttribute("disabled", "");
-        document.getElementById('p2').setAttribute("disabled", "");
-        document.getElementById('p3').setAttribute("disabled", "");
-        document.getElementById('p4').setAttribute("disabled", "");
+        document.getElementById('b1').setAttribute("disabled", "");
+        document.getElementById('b2').setAttribute("disabled", "");
+        document.getElementById('b3').setAttribute("disabled", "");
+        document.getElementById('b4').setAttribute("disabled", "");
 
       }
     },
