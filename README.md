@@ -1,2 +1,2 @@
-# parcial-1-admn3c-picart_catalina
- Primer parcial de Aplicaciones para Dispositivos móviles
+# parcial-2-admn3c-picart_catalina
+Segundo parcial de Aplicaciones para Dispositivos móviles
