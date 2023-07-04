@@ -40,7 +40,7 @@
     </v-card-title>
 <v-btn
       class="ma-2 pista-btn"
-      color="yellow"
+      :color="card.pistashow == false ? 'yellow': 'green' "
       light
       :id="card.btnid"
       @click="pista(card.pistaid, card.btnid)"
@@ -129,7 +129,6 @@
 </style>
 
 <script>
-// import { readonly } from 'vue';
 
 
   export default {
@@ -194,7 +193,6 @@
       this.pistas--;
       document.getElementById(pistaid).classList.remove("d-none");
       document.getElementById(btnid).setAttribute("disabled", "");
-      console.log(this.pistas);
       this.pistashow = true;
       if(this.pistas == 0){
         document.getElementById('pista-alert').innerText = 'SIN PISTAS';
@@ -213,7 +211,6 @@
         this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta">Faltan letras</p></div>`;
       }
       if(this.respuesta == cardR){
-        console.log('bien', cardR);
         this.field.setAttribute("disabled", "");
         this.field.style.backgroundColor="green";
         this.padre = this.field.parentElement;
@@ -221,7 +218,6 @@
       }else{
         this.padre = this.field.parentElement;
         this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta">Palabra incorrecta. Vuelve a intentarlo</p></div>`;
-        // this.field.value = '';
       }
     }
   }
