@@ -7,9 +7,7 @@
 
 <style lang="scss" scoped>
   .home{
-    background-color: rgb(43,40,187); 
-    background: linear-gradient(180deg, rgba(43,40,187,1) 0%, rgba(117,19,210,1) 100%);
-    background-repeat: no-repeat;
+    background-color:rgb(62, 13, 90) !important;
     height: 100vh;
   }
   h1{

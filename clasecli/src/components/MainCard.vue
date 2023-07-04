@@ -15,6 +15,7 @@
     <v-card
     class="mx-auto"
     max-width="344"
+    dark
   >
     <v-img
     :src="getImgUrl(card.imagen)" 
@@ -39,9 +40,10 @@
     </v-card-title>
 <v-btn
       class="ma-2 pista-btn"
-      color="red"
+      color="yellow"
+      light
       :id="card.btnid"
-      @click="pista(card.pistaid)"
+      @click="pista(card.pistaid, card.btnid)"
     >
       Pista
     </v-btn>
@@ -52,6 +54,8 @@
     </v-card-text>
 
     <v-btn block
+    color="green"
+    height="50px"
     @click="comprobar(card.id, card.respuesta, card.maxlength)">
     CHEQUEAR PALABRA
   </v-btn>
@@ -61,6 +65,14 @@
 </template>
 
 <style lang="scss">
+  .container{
+    background-color:rgb(62, 13, 90);
+    border: none;
+    outline: none;
+  }
+  div.v-card{
+    background-color: black;
+  }
   .boton{
     margin: 18px auto;
     width: 85%;
@@ -99,13 +111,14 @@
     padding: 10px;
     background-color: rgb(216, 110, 110);
     color: black;
+    word-break: keep-all;
   }
   .componente{
     z-index: 1;
   }
   #pista-alert{
     position: fixed;
-    margin: 98% 80%;
+    margin: 75% 75%;
     z-index: 2;
     background-color: #b3165a;
     color: white !important;
@@ -177,9 +190,10 @@
     getImgUrl: function (imagePath) {
       return require('@/assets/' + imagePath);
     },
-    pista(pistaid){
+    pista(pistaid, btnid){
       this.pistas--;
-      document.getElementById(pistaid).classList.remove("d-none")
+      document.getElementById(pistaid).classList.remove("d-none");
+      document.getElementById(btnid).setAttribute("disabled", "");
       console.log(this.pistas);
       this.pistashow = true;
       if(this.pistas == 0){
@@ -201,7 +215,9 @@
       if(this.respuesta == cardR){
         console.log('bien', cardR);
         this.field.setAttribute("disabled", "");
-        this.field.style.backgroundColor="lightgreen";
+        this.field.style.backgroundColor="green";
+        this.padre = this.field.parentElement;
+        this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta green">¡Correcto!</p></div>`;
       }else{
         this.padre = this.field.parentElement;
         this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta">Palabra incorrecta. Vuelve a intentarlo</p></div>`;
