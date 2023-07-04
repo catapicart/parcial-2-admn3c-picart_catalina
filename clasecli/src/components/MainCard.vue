@@ -1,6 +1,6 @@
 <template>
   <v-app>
-   <v-container v-for="card in cards" :key="card.id" :img="card.imagen" :val="card.value" :len="card.length" :pista="card.pista">
+   <v-container v-for="card in cards" :key="card.id" :img="card.imagen" :val="card.value" :len="card.maxlength" :pista="card.pista" :respuesta="card.respuesta">
     <v-card
     class="mx-auto"
     max-width="344"
@@ -13,12 +13,18 @@
 
     <v-card-title
     >
-      <v-otp-input
+      <v-text-field
+      :id="card.id"
       width="100px"
-      height="30px"
-  :length="card.length" :value="card.value"
-  ></v-otp-input>
+      height="50px"
+      :maxlength="card.maxlength" 
+      :value="card.value"
+  ></v-text-field>
   
+    <div>
+
+    </div>
+
     </v-card-title>
 <v-chip
       class="ma-2"
@@ -32,6 +38,10 @@
      Pista: {{ card.pista }}
     </v-card-text>
 
+    <v-btn block
+    @click="comprobar(card.id, card.respuesta, card.maxlength)">
+    Block Button
+  </v-btn>
   </v-card>
   </v-container> 
   </v-app>
@@ -58,9 +68,29 @@
     padding: 40px;
     color: white;
   }
+  input{
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 800;
+    font-size: 2.5rem;
+    padding: 10px;
+  }
+  .divalertas{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .alerta{
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(216, 110, 110);
+  }
 </style>
 
 <script>
+// import { readonly } from 'vue';
+
 
   export default {
     name: 'MainCard',
@@ -68,34 +98,39 @@
     data: () => ({
       show: false,
       pistashow: '',
+      field: '',
       cards: [
         {
-          id: 1,
+          id: '1',
           imagen: 'imagen1.png',
-          length: 7,
+          maxlength: 7,
           value: 'F',
-          pista: 'País de Europa'
+          pista: 'País de Europa',
+          respuesta: 'FRANCIA'
         },
         {
-          id: 2,
+          id: '2',
           imagen: 'imagen2.jpg',
-          length: 6,
+          maxlength: 6,
           value: 'F',
-          pista: 'Fácil de romper'
+          pista: 'Fácil de romper',
+          respuesta: 'FRAGIL'
         },
         {
-          id: 3,
+          id: '3',
           imagen: 'imagen3.png',
-          length: 5,
+          maxlength: 5,
           value: 'A',
-          pista: 'Material que se encuentra en las playas fácilmente'
+          pista: 'Material que se encuentra en las playas fácilmente',
+          respuesta: 'ARENA'
         },
         {
-          id: 4,
+          id: '4',
           imagen: 'imagen4.jpg',
-          length: 5,
+          maxlength: 5,
           value: 'C',
-          pista: 'Ir hacia abajo'
+          pista: 'Ir hacia abajo',
+          respuesta: 'CAIDA'
         },
       ]
     }),
@@ -105,6 +140,19 @@
     },
     pista(){
       this.pistashow = true;
+    },
+    comprobar(cardId, cardR, len){
+      this.field = document.getElementById(cardId);
+      this.respuesta = this.field.value.toUpperCase();
+      if(this.respuesta.length < len){ //Si la cantidad de letras es menor a la requerida 
+        this.padre = this.field.parentElement;
+        this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta">Faltan letras</p></div>`;
+      }
+      if(this.respuesta == cardR){
+        console.log('bien', cardR);
+        this.field.setAttribute("disabled", "");
+        this.field.style.backgroundColor="lightgreen";
+      }
     }
   }
   }
