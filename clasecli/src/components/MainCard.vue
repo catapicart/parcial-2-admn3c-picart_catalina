@@ -209,8 +209,8 @@
       if(this.respuesta.length < len){ //Si la cantidad de letras es menor a la requerida 
         this.padre = this.field.parentElement;
         this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta">Faltan letras</p></div>`;
-      }
-      if(this.respuesta == cardR){
+      }else{
+        if(this.respuesta == cardR){
         this.field.setAttribute("disabled", "");
         this.field.style.backgroundColor="green";
         this.padre = this.field.parentElement;
@@ -219,6 +219,8 @@
         this.padre = this.field.parentElement;
         this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta">Palabra incorrecta. Vuelve a intentarlo</p></div>`;
       }
+      }
+      
     }
   }
   }
