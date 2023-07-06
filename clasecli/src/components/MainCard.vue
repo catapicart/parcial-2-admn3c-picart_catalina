@@ -64,29 +64,37 @@
   </v-card>
   </v-container> 
 
-  <v-container
-  class="pa-2"
-  >
-    <v-row
+
+  <v-dialog
+      v-model="dialog"
+      max-width="290"
     >
-      <v-col>
-        Correctas:
-      </v-col>
-      <v-col>
-        Incorrectas:
-      </v-col>
-    </v-row>
-    <v-row
-    dense
-    >
-      <v-col>
-        {{ this.contadorCorrectas }}
-      </v-col>
-      <v-col>
-        {{ this.contadorCorrectas }}
-      </v-col>
-    </v-row>
-  </v-container>
+      <v-card
+      dark>
+        <v-card-title class="text-h5">
+          ¡Felicitaciones!
+        </v-card-title>
+
+        <v-card-text>
+          ¡Genial, {{ this.usuario }}! Has completado el juego. Estos son tus resultados:
+          <ul>
+            <li>Correctas: {{ this.contadorCorrectas }}</li>
+            <li>Intentos fallidos: {{ this.contadorIncorrectas }}</li>
+          </ul>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-container 
+            class="boton"
+            dark
+              >
+        <router-link to="/" class="start">Volver al inicio</router-link>
+        </v-container>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -107,13 +115,14 @@
     background-color: #d4055f;
     border: 15px;
     border-radius: 15px;
+    color: white;
     
   }
   .boton:hover{
     background-color: #E90064;
     color: white;
   }
-  .start{
+  .start.router-link-active{
     color: white;
     text-decoration: none;
   }
@@ -177,6 +186,8 @@
       pistas: 3,
       contadorIncorrectas : 0,
       contadorCorrectas : 0,
+      dialog: false,
+      usuario: localStorage.getItem("usuario"),
       cards: [
         {
           id: '1',
@@ -258,7 +269,11 @@
         this.padre = this.field.parentElement;
         this.padre.parentElement.nextSibling.innerHTML = `<div class="divalertas"><p class="alerta green">¡Correcto!</p></div>`;
         document.getElementById(checkid).setAttribute("disabled", "");
+
         this.contadorCorrectas++;
+        if(this.contadorCorrectas == 4){
+          this.dialog = true;
+        }
 
       }else{//si es incorrecta
         this.padre = this.field.parentElement;

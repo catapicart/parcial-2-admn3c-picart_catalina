@@ -32,6 +32,8 @@
     color: rgb(26, 26, 26);
   }
   .info{
+    background-color:rgb(62, 13, 90) !important;
+    width: 100%;
     margin-top: 40%;
   }
   img{

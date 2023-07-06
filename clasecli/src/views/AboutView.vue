@@ -54,6 +54,7 @@ import MainCard from '@/components/MainCard.vue'
 
 export default {
   name: 'main-card',
+  modal: true,
   components: {
     MainCard
   },
