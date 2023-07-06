@@ -1,11 +1,9 @@
 <template>
-   <v-container>
+   <v-container
+   class="contenedor"
+   justify="center">
     <v-row justify="center">
     <v-col
-      cols="12"
-      sm="10"
-      md="8"
-      lg="6"
     >
       <v-card ref="form"
       dark>
@@ -70,7 +68,19 @@
   .name{
     font-size: 1rem;
   }
-  
+
+  @media screen and (min-width: 520px ) {
+  .contenedor{
+    width: 90%;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 920px ) {
+  .contenedor{
+    width: 85%;
+    margin: auto;
+  }
+}
 </style>
 
 <script>

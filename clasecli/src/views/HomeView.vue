@@ -16,6 +16,7 @@
     background-color:rgb(62, 13, 90) !important;
     height: 100vh;
     padding: 20px;
+    width: 100%;
   }
   .inicio{
     background-color: rgba(245, 245, 220, 0.671);
@@ -39,6 +40,16 @@
   p{
     color: rgb(202, 201, 201);
   }
+  @media screen and (min-width: 520px ) {
+  .inicio{
+    width: 80%;
+  }
+}
+@media screen and (min-width: 920px ) {
+  .inicio{
+    width: 50%;
+  }
+}
 </style>
 
 <script>

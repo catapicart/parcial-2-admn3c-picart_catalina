@@ -16,6 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  width: 100%;
 }
 
 #logo{
@@ -28,15 +29,27 @@ nav {
   a {
     font-weight: bold;
     color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
   p{
     font-size: 1rem;
     color: white;
     font-weight: 800;
   }
+}
+
+@media screen and (min-width: 520px ) {
+  #logo{
+    width: 5%;
+  }
+
+  
+}
+
+@media screen and (min-width: 920px ) {
+  #logo{
+    width: 3%;
+  }
+
+  
 }
 </style>
