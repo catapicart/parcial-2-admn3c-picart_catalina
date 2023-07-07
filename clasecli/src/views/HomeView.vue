@@ -5,9 +5,7 @@
       <HelloWorld msg="Welcome to Your Vue.js App"/>
     </div>
 
-    <div class="info">
-      <p>De los creadores de  <img src="../assets/superquiz-logo.png" alt="SuperQuiz"></p>
-    </div>
+    <TableResults />
   </div>
 </template>
 
@@ -31,16 +29,13 @@
     padding: 40px;
     color: rgb(26, 26, 26);
   }
-  .info{
-    background-color:rgb(62, 13, 90) !important;
-    width: 100%;
-    margin-top: 40%;
-  }
   img{
     width: 10%;
   }
   p{
     color: rgb(202, 201, 201);
+    background-color:rgb(62, 13, 90) !important;
+
   }
   @media screen and (min-width: 520px ) {
   .inicio{
@@ -56,12 +51,13 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import HelloWorld from '@/components/HelloWorld.vue';
+import TableResults from '@/components/TableResults.vue'
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    HelloWorld,
+    TableResults
   }
 }
 </script>

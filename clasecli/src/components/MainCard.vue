@@ -272,6 +272,13 @@
 
         this.contadorCorrectas++;
         if(this.contadorCorrectas == 4){
+            var today = new Date();
+            var day = today.getDate();
+            var month = today.getMonth() + 1;
+            var year = today.getFullYear();
+          localStorage.setItem('fecha', `${day}/${month}/${year}`);
+          localStorage.setItem('correctas', this.contadorCorrectas);
+          localStorage.setItem('incorrectas', this.contadorIncorrectas);
           this.dialog = true;
         }
 
