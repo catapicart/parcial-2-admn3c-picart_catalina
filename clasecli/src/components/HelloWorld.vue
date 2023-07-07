@@ -43,7 +43,8 @@
   </v-container> 
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
   button.v-btn{
     background-color: #8d0d45 !important;
 

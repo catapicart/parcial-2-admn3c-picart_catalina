@@ -17,7 +17,6 @@
     width: 100%;
   }
   .inicio{
-    background-color: rgba(245, 245, 220, 0.671);
     padding: 5%;
     border: 15px;
     border-radius: 5px;
@@ -27,7 +26,7 @@
   h1{
     font-size: 1.6rem;
     padding: 40px;
-    color: rgb(26, 26, 26);
+    color: rgb(255, 255, 255);
   }
   img{
     width: 10%;
